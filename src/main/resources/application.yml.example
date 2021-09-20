@@ -1,0 +1,61 @@
+#服务器设置
+server:
+  #服务器端口
+  port:
+  #访问路由
+  servlet:
+    context-path: /
+#spring设置
+spring:
+  cache:
+    ehcache:
+      config: ehcache.xml
+  servlet:
+    multipart:
+      #最大可上传文件
+      max-file-size: 200MB
+      #最大请求
+      max-request-size: 200MB
+  #数据库配置
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    #持久层模式，update为自动创建和更新
+    hibernate:
+      ddl-auto: update
+    #展示sql语句
+    show-sql: true
+  #v的路径和类型
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  #redis配置
+  redis:
+    database: 0
+    host:
+    port:
+    password:
+    timeout: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+#日志输出
+logging:
+  level:
+    com:
+      bircktool:
+        mapper: debug
+#mybatis配置
+mybatis:
+  typeAliasesPackage: com.bricktool.pojo
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    #开启数据库下划线转驼峰
+    mapUnderscoreToCamelCase: true
