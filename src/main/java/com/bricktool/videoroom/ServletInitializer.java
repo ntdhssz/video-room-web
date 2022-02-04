@@ -1,4 +1,4 @@
-package com.bircktool.videoroomweb;
+package com.bricktool.videoroom;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(VideoRoomWebApplication.class);
+        return application.sources(VideoRoomApplication.class);
     }
 
 }
