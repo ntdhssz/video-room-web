@@ -3,7 +3,7 @@ package com.bricktool.videoroom.dto;
 public class LoginDTO {
     private String loginName;
     private String password;
-    private int phoneLogin;
+    private String agent;
 
     public String getLoginName() {
         return loginName;
@@ -21,11 +21,11 @@ public class LoginDTO {
         this.password = password;
     }
 
-    public int getPhoneLogin() {
-        return phoneLogin;
+    public String getAgent() {
+        return agent;
     }
 
-    public void setPhoneLogin(int phoneLogin) {
-        this.phoneLogin = phoneLogin;
+    public void setAgent(String agent) {
+        this.agent = agent;
     }
 }

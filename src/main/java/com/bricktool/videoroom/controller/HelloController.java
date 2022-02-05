@@ -13,8 +13,7 @@ public class HelloController
     UserServiceImpl userService;
 
     @RequestMapping("/hello")
-    public User hello() {
-        User user = userService.get(2);
-        return user;
+    public void hello() {
+
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface UserService
 {
-    List<User> getList();
     User get(int id);
+    List<User> getList();
     User getByLoginName(String loginName);
     List<User> searchByNickName(String nick_name);
     void updatePcToken(int id, String token);

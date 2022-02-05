@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bricktool.videoroom.mapper.UserMapper">
-    <select id="getList" resultType="com.bricktool.videoroom.pojo.User">
-        SELECT *
-        FROM user
-    </select>
     <select id="get" parameterType="int" resultType="com.bricktool.videoroom.pojo.User">
         SELECT *
         FROM user
         WHERE id = #{id} limit 1
+    </select>
+    <select id="getList" resultType="com.bricktool.videoroom.pojo.User">
+        SELECT *
+        FROM user
     </select>
     <select id="getByLoginName" parameterType="String" resultType="com.bricktool.videoroom.pojo.User">
         SELECT *

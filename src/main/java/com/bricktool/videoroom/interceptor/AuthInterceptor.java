@@ -11,8 +11,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 public class AuthInterceptor implements HandlerInterceptor {
     private final RedisUtil redisUtil;
@@ -32,12 +30,17 @@ public class AuthInterceptor implements HandlerInterceptor {
             throw new BusinessException(BusinessExceptionCode.NOT_LOGIN);
         }
 
+        if (agent == null) {
+            throw new BusinessException(BusinessExceptionCode.ILLEGAL_AGENT);
+        }
+
         String tokenKey;
-        if (agent != null && agent.equals("mobile")) {
+        if (agent.equals("mobile")) {
             tokenKey = RedisKey.MOBILE_USER_TOKEN.getKey() + token;
-        } else {
-            agent = "pc";
+        } else if (agent.equals("pc")) {
             tokenKey = RedisKey.PC_USER_TOKEN.getKey() + token;
+        } else {
+            throw new BusinessException(BusinessExceptionCode.ILLEGAL_AGENT);
         }
         Object tokenInfo = redisUtil.get(tokenKey);
         if (tokenInfo == null) {
@@ -57,6 +60,11 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         userService.checkUserStatus(user.getStatus());
+
+        System.out.println(user.getId());
+        request.setAttribute("id", user.getId());
+        request.setAttribute("nick_name", user.getNickName());
+        request.setAttribute("avatar", user.getAvatar());
 
         return true;
     }

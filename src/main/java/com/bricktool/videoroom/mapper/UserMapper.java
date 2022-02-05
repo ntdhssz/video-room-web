@@ -6,10 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface UserMapper
-{
-    List<User> getList();
+public interface UserMapper {
     User get(int id);
+    List<User> getList();
     User getByLoginName(String loginName);
     List<User> searchByNickName(String nick_name);
     void updatePcToken(int id, String token);

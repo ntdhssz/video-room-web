@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bricktool.videoroom.mapper.VideoRoomMapper">
+    <select id="get" parameterType="int" resultType="com.bricktool.videoroom.pojo.VideoRoom">
+        SELECT *
+        FROM video_room
+        WHERE id = #{id} limit 1
+    </select>
+    <select id="getList" resultType="com.bricktool.videoroom.pojo.VideoRoom">
+        SELECT *
+        FROM video_room
+    </select>
+    <select id="getListFromIndex" resultType="com.bricktool.videoroom.vo.IndexVO">
+        SELECT *
+        FROM video_room
+        <where>
+            <if test="type != 0">
+                type = #{type}
+            </if>
+            <if test="keyword != null">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

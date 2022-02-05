@@ -6,6 +6,7 @@ public enum BusinessExceptionCode {
     ERROR_PASSWORD(30003, "用户名或密码错误"),
     ILLEGAL_TOKEN(30004, "非法token"),
     LOGIN_TIMEOUT(30005, "登录过期"),
+    ILLEGAL_AGENT(30006, "非法设备端口"),
     NULL_USER(40001, "账户不存在"),
     NOT_LOGIN(40002, "未登录"),
     UNKNOWN_STATUS(50001, "账户处于未知状态");
