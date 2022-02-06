@@ -9,7 +9,8 @@ public enum BusinessExceptionCode {
     ILLEGAL_AGENT(30006, "非法设备端口"),
     NULL_USER(40001, "账户不存在"),
     NOT_LOGIN(40002, "未登录"),
-    UNKNOWN_STATUS(50001, "账户处于未知状态");
+    UNKNOWN_STATUS(50001, "账户处于未知状态"),
+    ROOM_NOT_ALLOW_ENTER(50002, "房间不允许进入");
 
     private int code;
     private String message;

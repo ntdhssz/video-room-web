@@ -1,12 +1,11 @@
 package com.bricktool.videoroom.vo;
 
-public class IndexVO {
+public class RoomVO {
     private int id;
     private int userId;
-    private long watching;
     private String nickName;
     private String title;
-    private String snapshot;
+    private String videoUrl;
     private String createdAt;
 
     public int getId() {
@@ -25,22 +24,6 @@ public class IndexVO {
         this.userId = userId;
     }
 
-    public long getWatching() {
-        return watching;
-    }
-
-    public void setWatching(long watching) {
-        this.watching = watching;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -49,12 +32,12 @@ public class IndexVO {
         this.title = title;
     }
 
-    public String getSnapshot() {
-        return snapshot;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
-    public void setSnapshot(String snapshot) {
-        this.snapshot = snapshot;
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     public String getCreatedAt() {
@@ -63,5 +46,13 @@ public class IndexVO {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

@@ -16,6 +16,10 @@ public class IndexService {
     }
 
     public IPage<IndexVO> index(IndexDTO indexDTO) {
-        return videoRoomService.getListFromIndex(indexDTO);
+        IPage<IndexVO> iPage= videoRoomService.getListFromIndex(indexDTO);
+        for (IndexVO indexVO : iPage.getRecords()) {
+            indexVO.setWatching(videoRoomService.getWatching(indexVO.getId()));
+        }
+        return iPage;
     }
 }

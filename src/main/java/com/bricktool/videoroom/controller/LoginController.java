@@ -36,10 +36,10 @@ public class LoginController {
     @PostMapping("/authLogin")
     public ResultData authLogin(HttpServletRequest request) {
         LoginVO loginVO = new LoginVO();
-        loginVO.setId((int) request.getAttribute("id"));
-        loginVO.setNickName((String) request.getAttribute("nick_name"));
+        loginVO.setId((int) request.getAttribute("uid"));
+        loginVO.setNickName((String) request.getAttribute("user_nick_name"));
         loginVO.setToken(request.getHeader("token"));
-        loginVO.setAvatar((String) request.getAttribute("avatar"));
+        loginVO.setAvatar((String) request.getAttribute("user_avatar"));
         return ResultUtil.success(loginVO);
     }
 }

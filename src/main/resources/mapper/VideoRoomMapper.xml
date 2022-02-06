@@ -12,15 +12,18 @@
         FROM video_room
     </select>
     <select id="getListFromIndex" resultType="com.bricktool.videoroom.vo.IndexVO">
-        SELECT *
-        FROM video_room
+        SELECT vr.id, vr.user_id, vr.title, vr.snapshot, vr.created_at, u.nick_name
+        FROM video_room as vr
+        LEFT JOIN
+        user AS u ON u.id = vr.user_id
         <where>
             <if test="type != 0">
-                type = #{type}
+                vr.type = #{type}
             </if>
             <if test="keyword != null">
-                AND title LIKE CONCAT('%', #{keyword}, '%')
+                AND vr.title LIKE CONCAT('%', #{keyword}, '%')
             </if>
+            AND audit_status = 1 AND play_status = 1
         </where>
     </select>
 </mapper>

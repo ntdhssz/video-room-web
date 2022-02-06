@@ -31,4 +31,12 @@ public class RedisUtil {
     public void del(String key) {
         redisTemplate.delete(key);
     }
+
+    public long lSize(String key) {
+        Long size = redisTemplate.opsForList().size(key);
+        if (size == null) {
+            size = 0L;
+        }
+        return size;
+    }
 }
