@@ -24,4 +24,9 @@ public class RoomController {
         int userId = (int) request.getAttribute("uid");
         return ResultUtil.success(roomService.enterRoom(id, userId));
     }
+
+    @GetMapping("/get_room_user")
+    public ResultData getRoomUser(@RequestParam(value = "user_id") int userId) {
+        return ResultUtil.success(roomService.getRoomUser(userId));
+    }
 }

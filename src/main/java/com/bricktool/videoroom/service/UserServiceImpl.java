@@ -4,6 +4,7 @@ import com.bricktool.videoroom.exception.BusinessException;
 import com.bricktool.videoroom.exception.BusinessExceptionCode;
 import com.bricktool.videoroom.mapper.UserMapper;
 import com.bricktool.videoroom.pojo.User;
+import com.bricktool.videoroom.vo.RoomUserVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,5 +57,9 @@ public class UserServiceImpl implements UserService
             default:
                 throw new BusinessException(BusinessExceptionCode.UNKNOWN_STATUS);
         }
+    }
+
+    public RoomUserVO getRoomUser(int userId) {
+        return userMapper.getRoomUser(userId);
     }
 }

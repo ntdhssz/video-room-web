@@ -4,8 +4,11 @@ import com.bricktool.videoroom.exception.BusinessException;
 import com.bricktool.videoroom.exception.BusinessExceptionCode;
 import com.bricktool.videoroom.pojo.User;
 import com.bricktool.videoroom.pojo.VideoRoom;
+import com.bricktool.videoroom.vo.RoomUserVO;
 import com.bricktool.videoroom.vo.RoomVO;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RoomService {
@@ -31,5 +34,12 @@ public class RoomService {
         User user =userService.get(userId);
         roomVO.setNickName(user.getNickName());
         return roomVO;
+    }
+
+    public RoomUserVO getRoomUser(int userId) {
+        if (userService.getRoomUser(userId) == null) {
+            throw new BusinessException(BusinessExceptionCode.NOT_USER.toString());
+        }
+        return userService.getRoomUser(userId);
     }
 }

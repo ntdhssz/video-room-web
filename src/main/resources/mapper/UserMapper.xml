@@ -16,6 +16,11 @@
         FROM user
         WHERE login_name = #{loginName} limit 1
     </select>
+    <select id="getRoomUser" parameterType="int" resultType="com.bricktool.videoroom.vo.RoomUserVO">
+        SELECT *
+        FROM user
+        WHERE id = #{userId} limit 1
+    </select>
     <update id="updatePcToken">
         UPDATE user SET pc_token = #{token} WHERE id = #{id}
     </update>

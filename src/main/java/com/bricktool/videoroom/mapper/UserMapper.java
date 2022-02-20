@@ -1,6 +1,7 @@
 package com.bricktool.videoroom.mapper;
 
 import com.bricktool.videoroom.pojo.User;
+import com.bricktool.videoroom.vo.RoomUserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface UserMapper {
     List<User> searchByNickName(String nick_name);
     void updatePcToken(int id, String token);
     void updateMobileToken(int id, String token);
+    RoomUserVO getRoomUser(int userId);
 }

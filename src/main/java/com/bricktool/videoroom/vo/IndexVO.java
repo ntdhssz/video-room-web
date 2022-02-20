@@ -3,7 +3,7 @@ package com.bricktool.videoroom.vo;
 public class IndexVO {
     private int id;
     private int userId;
-    private long watching;
+    private int watching;
     private String nickName;
     private String title;
     private String snapshot;
@@ -25,11 +25,11 @@ public class IndexVO {
         this.userId = userId;
     }
 
-    public long getWatching() {
+    public int getWatching() {
         return watching;
     }
 
-    public void setWatching(long watching) {
+    public void setWatching(int watching) {
         this.watching = watching;
     }
 

@@ -40,8 +40,13 @@ public class VideoRoomServiceImpl implements VideoRoomService{
         return videoRoomMapper.getListFromIndex(page, indexDTO.getType(), indexDTO.getKeyword());
     }
 
-    public long getWatching(int id) {
+    public int getWatching(int id) {
         String watchingKey = RedisKey.ROOM_WATCHING.getKey() + id;
-        return redisUtil.lSize(watchingKey);
+        Object watchingNumOj = redisUtil.get(watchingKey);
+        int watchingNum = 0;
+        if (watchingNumOj != null) {
+            watchingNum = (int) watchingNumOj;
+        }
+        return watchingNum;
     }
 }
