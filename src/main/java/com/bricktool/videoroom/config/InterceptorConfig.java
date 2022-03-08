@@ -1,7 +1,7 @@
 package com.bricktool.videoroom.config;
 
 import com.bricktool.videoroom.interceptor.AuthInterceptor;
-import com.bricktool.videoroom.service.UserServiceImpl;
+import com.bricktool.videoroom.service.database.UserServiceImpl;
 import com.bricktool.videoroom.util.Redis.RedisUtil;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -22,6 +22,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new AuthInterceptor(this.redisUtil, this.userService))
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login")
-                .excludePathPatterns("/index");
+                .excludePathPatterns("/index")
+                .excludePathPatterns("/register/**");
     }
 }

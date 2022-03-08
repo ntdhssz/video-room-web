@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bricktool.videoroom.mapper.UserMapper">
+    <insert id="insert"
+            parameterType="com.bricktool.videoroom.pojo.User"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO user(login_name, status, nick_name, password, avatar)
+        VALUES (#{loginName}, #{status}, #{nickName}, MD5(#{password}), #{avatar})
+    </insert>
     <select id="get" parameterType="int" resultType="com.bricktool.videoroom.pojo.User">
         SELECT *
         FROM user

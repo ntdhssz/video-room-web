@@ -3,27 +3,70 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bricktool.videoroom.mapper.VideoRoomMapper">
     <select id="get" parameterType="int" resultType="com.bricktool.videoroom.pojo.VideoRoom">
-        SELECT *
-        FROM video_room
-        WHERE id = #{id} limit 1
+        SELECT vr.*, u.nick_name, cv.video_name, cv.video_url, cv.snapshot
+        FROM video_room AS vr
+        LEFT JOIN user AS u ON u.id = vr.user_id
+        LEFT JOIN choose_video AS cv ON cv.id = vr.choose_video
+        WHERE vr.id = #{id} AND vr.deleted_at IS NULL limit 1
+    </select>
+    <select id="getUserRoomList" parameterType="int" resultType="com.bricktool.videoroom.pojo.VideoRoom">
+        SELECT vr.*, cv.video_name, cv.video_url, cv.snapshot
+        FROM video_room AS vr
+        LEFT JOIN choose_video AS cv ON cv.id = vr.choose_video
+        WHERE vr.user_id = #{userId} AND vr.deleted_at IS NULL
+    </select>
+    <select id="getWatchHistory" parameterType="int" resultType="com.bricktool.videoroom.pojo.VideoRoom">
+        SELECT vr.*, cv.video_name, u.nick_name, wh.watch_time
+        FROM watch_history AS wh
+        LEFT JOIN video_room AS vr ON vr.id = wh.room_id
+        LEFT JOIN user AS u ON u.id = vr.user_id
+        LEFT JOIN choose_video AS cv ON cv.id = vr.choose_video
+        WHERE wh.user_id = #{userId} AND vr.deleted_at IS NULL
+        ORDER BY wh.watch_time desc
     </select>
     <select id="getList" resultType="com.bricktool.videoroom.pojo.VideoRoom">
-        SELECT *
-        FROM video_room
+        SELECT vr.*, cv.video_name, cv.video_url, cv.snapshot
+        FROM video_room AS vr
+        LEFT JOIN choose_video AS cv ON cv.id = vr.choose_video
+        WHERE vr.deleted_at IS NULL
     </select>
+    <insert id="insert"
+            parameterType="com.bricktool.videoroom.pojo.VideoRoom"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO video_room(user_id, title, type, audit_status, play_status, choose_video)
+        VALUES (#{userId}, #{title}, #{type}, #{auditStatus}, #{playStatus}, #{chooseVideo})
+    </insert>
+    <update id="update" parameterType="com.bricktool.videoroom.pojo.VideoRoom">
+        UPDATE video_room
+        SET user_id = #{userId},
+            title = #{title},
+            type = #{type},
+            audit_status = #{auditStatus},
+            play_status = #{playStatus},
+            choose_video = #{chooseVideo}
+        WHERE id = #{id}
+    </update>
+    <update id="delete" parameterType="Integer">
+        UPDATE video_room
+        SET deleted_at = CURRENT_TIMESTAMP
+        WHERE id = #{id}
+    </update>
     <select id="getListFromIndex" resultType="com.bricktool.videoroom.vo.IndexVO">
-        SELECT vr.id, vr.user_id, vr.title, vr.snapshot, vr.created_at, u.nick_name
+        SELECT vr.id, vr.user_id, vr.title, cv.video_name, cv.snapshot, vr.created_at, u.nick_name
         FROM video_room as vr
-        LEFT JOIN
-        user AS u ON u.id = vr.user_id
+        LEFT JOIN user AS u ON u.id = vr.user_id
+        LEFT JOIN choose_video AS cv ON cv.id = vr.choose_video
         <where>
             <if test="type != 0">
                 vr.type = #{type}
             </if>
             <if test="keyword != null">
-                AND vr.title LIKE CONCAT('%', #{keyword}, '%')
+                AND (vr.title LIKE CONCAT('%', #{keyword}, '%')
+                OR cv.video_name LIKE CONCAT('%', #{keyword}, '%')
+                OR u.nick_name LIKE CONCAT('%', #{keyword}, '%'))
             </if>
-            AND audit_status = 1 AND play_status = 1
+            AND audit_status = 1 AND play_status = 1 AND deleted_at IS NULL
         </where>
     </select>
 </mapper>

@@ -1,12 +1,31 @@
 package com.bricktool.videoroom.vo;
 
+import com.bricktool.videoroom.pojo.VideoRoom;
+
 public class RoomVO {
     private int id;
     private int userId;
     private String nickName;
     private String title;
+    private int type;
+    private int chooseVideo;
+    private String videoName;
     private String videoUrl;
-    private String createdAt;
+    private String snapshot;
+    private String createdDateTime;
+
+    public RoomVO(VideoRoom videoRoom) {
+        this.id = videoRoom.getId();
+        this.userId = videoRoom.getUserId();
+        this.nickName = videoRoom.getNickName();
+        this.title = videoRoom.getTitle();
+        this.type = videoRoom.getType();
+        this.chooseVideo = videoRoom.getChooseVideo();
+        this.videoName = videoRoom.getVideoName();
+        this.videoUrl = videoRoom.getVideoUrl();
+        this.snapshot = videoRoom.getSnapshot();
+        this.createdDateTime = videoRoom.getCreatedDateTime();
+    }
 
     public int getId() {
         return id;
@@ -32,6 +51,30 @@ public class RoomVO {
         this.title = title;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getChooseVideo() {
+        return chooseVideo;
+    }
+
+    public void setChooseVideo(int chooseVideo) {
+        this.chooseVideo = chooseVideo;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
+    }
+
     public String getVideoUrl() {
         return videoUrl;
     }
@@ -40,12 +83,20 @@ public class RoomVO {
         this.videoUrl = videoUrl;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getSnapshot() {
+        return snapshot;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setSnapshot(String snapshot) {
+        this.snapshot = snapshot;
+    }
+
+    public String getCreatedDateTime() {
+        return createdDateTime;
+    }
+
+    public void setCreatedDateTime(String createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     public String getNickName() {

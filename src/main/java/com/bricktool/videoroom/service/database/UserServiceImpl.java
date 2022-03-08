@@ -1,10 +1,9 @@
-package com.bricktool.videoroom.service;
+package com.bricktool.videoroom.service.database;
 
 import com.bricktool.videoroom.exception.BusinessException;
 import com.bricktool.videoroom.exception.BusinessExceptionCode;
 import com.bricktool.videoroom.mapper.UserMapper;
 import com.bricktool.videoroom.pojo.User;
-import com.bricktool.videoroom.vo.RoomUserVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,12 +16,21 @@ public class UserServiceImpl implements UserService
     private UserMapper userMapper;
 
     @Override
+    public void insert(User user) {
+        userMapper.insert(user);
+    }
+
+    @Override
     public List<User> getList() {
         return userMapper.getList();
     }
 
     @Override
     public User get(int id) {
+        User user = userMapper.get(id);
+        if (user == null) {
+            throw new BusinessException(BusinessExceptionCode.NOT_USER.toString());
+        }
         return userMapper.get(id);
     }
 
@@ -57,9 +65,5 @@ public class UserServiceImpl implements UserService
             default:
                 throw new BusinessException(BusinessExceptionCode.UNKNOWN_STATUS);
         }
-    }
-
-    public RoomUserVO getRoomUser(int userId) {
-        return userMapper.getRoomUser(userId);
     }
 }

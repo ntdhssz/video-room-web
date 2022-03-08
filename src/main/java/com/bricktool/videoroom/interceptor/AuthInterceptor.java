@@ -3,7 +3,7 @@ package com.bricktool.videoroom.interceptor;
 import com.bricktool.videoroom.exception.BusinessException;
 import com.bricktool.videoroom.exception.BusinessExceptionCode;
 import com.bricktool.videoroom.pojo.User;
-import com.bricktool.videoroom.service.UserServiceImpl;
+import com.bricktool.videoroom.service.database.UserServiceImpl;
 import com.bricktool.videoroom.util.Redis.RedisKey;
 import com.bricktool.videoroom.util.Redis.RedisUtil;
 import org.springframework.web.servlet.HandlerInterceptor;

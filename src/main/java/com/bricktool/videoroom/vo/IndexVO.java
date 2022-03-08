@@ -6,6 +6,7 @@ public class IndexVO {
     private int watching;
     private String nickName;
     private String title;
+    private String videoName;
     private String snapshot;
     private String createdAt;
 
@@ -47,6 +48,14 @@ public class IndexVO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
     }
 
     public String getSnapshot() {

@@ -33,7 +33,7 @@ public class LoginController {
         return ResultUtil.success();
     }
 
-    @PostMapping("/authLogin")
+    @PostMapping("/auth-login")
     public ResultData authLogin(HttpServletRequest request) {
         LoginVO loginVO = new LoginVO();
         loginVO.setId((int) request.getAttribute("uid"));

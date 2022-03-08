@@ -1,5 +1,7 @@
 package com.bricktool.videoroom.pojo;
 
+import com.bricktool.videoroom.dto.RegisterDTO;
+
 public class User {
     private int id;
     private String loginName;
@@ -20,6 +22,14 @@ public class User {
         this.loginName = loginName;
         this.nickName = nickName;
         this.password = password;
+    }
+
+    public User(RegisterDTO registerDTO) {
+        this.loginName = registerDTO.getLoginName();
+        this.status = 1;
+        this.nickName = registerDTO.getNickName();
+        this.password = registerDTO.getPassword();
+        this.avatar = "https://n-vdieo-room-avatar.oss-cn-shanghai.aliyuncs.com/default_head.png";
     }
 
     public int getId() {

@@ -11,7 +11,9 @@ public enum BusinessExceptionCode {
     NOT_LOGIN(40002, "未登录"),
     NOT_USER(40003, "用户不存在"),
     UNKNOWN_STATUS(50001, "账户处于未知状态"),
-    ROOM_NOT_ALLOW_ENTER(50002, "房间不允许进入");
+    ROOM_NOT_ALLOW_ENTER(50002, "房间不允许进入"),
+    ROOM_NOT_ALLOW_EDIT(50003, "没有编辑房间的权限"),
+    ROOM_NOT_EXIST(50004, "房间不存在"),;
 
     private int code;
     private String message;

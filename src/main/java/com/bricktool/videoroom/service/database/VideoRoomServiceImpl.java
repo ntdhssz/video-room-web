@@ -1,4 +1,4 @@
-package com.bricktool.videoroom.service;
+package com.bricktool.videoroom.service.database;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -30,8 +30,34 @@ public class VideoRoomServiceImpl implements VideoRoomService{
     }
 
     @Override
+    public int insert(VideoRoom videoRoom) {
+        videoRoomMapper.insert(videoRoom);
+        return videoRoom.getId();
+    }
+
+    @Override
+    public void update(VideoRoom videoRoom) {
+        videoRoomMapper.update(videoRoom);
+    }
+
+    @Override
+    public void delete(int id) {
+        videoRoomMapper.delete(id);
+    }
+
+    @Override
     public List<VideoRoom> getList() {
         return videoRoomMapper.getList();
+    }
+
+    @Override
+    public List<VideoRoom> getUserRoomList(int userId) {
+        return videoRoomMapper.getUserRoomList(userId);
+    }
+
+    @Override
+    public List<VideoRoom> getWatchHistory(int userId) {
+        return videoRoomMapper.getWatchHistory(userId);
     }
 
     @Override

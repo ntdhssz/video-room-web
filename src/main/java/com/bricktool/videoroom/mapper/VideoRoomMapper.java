@@ -12,6 +12,11 @@ import java.util.List;
 @Mapper
 public interface VideoRoomMapper {
     VideoRoom get(int id);
+    void insert(VideoRoom videoRoom);
+    void update(VideoRoom videoRoom);
+    void delete(int id);
     List<VideoRoom> getList();
+    List<VideoRoom> getUserRoomList(int userId);
+    List<VideoRoom> getWatchHistory(int userId);
     IPage<IndexVO> getListFromIndex(Page<VideoRoom> page, int type, String keyword);
 }

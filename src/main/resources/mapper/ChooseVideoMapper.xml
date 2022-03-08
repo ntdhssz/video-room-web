@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bricktool.videoroom.mapper.ChooseVideoMapper">
+    <insert id="insert"
+            parameterType="com.bricktool.videoroom.pojo.ChooseVideo"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO choose_video(video_name, video_url, snapshot)
+        VALUES (#{videoName}, #{videoUrl}, #{snapshot})
+    </insert>
+    <select id="getList" resultType="com.bricktool.videoroom.pojo.ChooseVideo">
+        SELECT *
+        FROM choose_video
+    </select>
+    <select id="getByNameAndUrl" resultType="com.bricktool.videoroom.pojo.ChooseVideo">
+        SELECT *
+        FROM choose_video
+        WHERE video_name = #{videoName} AND video_url = #{videoUrl}
+    </select>
+</mapper>
