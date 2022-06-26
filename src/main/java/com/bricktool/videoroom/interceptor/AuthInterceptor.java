@@ -26,7 +26,6 @@ public class AuthInterceptor implements HandlerInterceptor {
             throws IOException {
         String token = request.getHeader("token");
         String agent = request.getHeader("agent");
-        System.out.println(token);
         if (token == null) {
             throw new BusinessException(BusinessExceptionCode.NOT_LOGIN);
         }
@@ -62,7 +61,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         userService.checkUserStatus(user.getStatus());
 
-        System.out.println(user.getId());
         request.setAttribute("uid", user.getId());
         request.setAttribute("user_nick_name", user.getNickName());
         request.setAttribute("user_avatar", user.getAvatar());

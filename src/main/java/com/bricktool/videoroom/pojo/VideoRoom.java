@@ -2,7 +2,6 @@ package com.bricktool.videoroom.pojo;
 
 
 import com.bricktool.videoroom.dto.CreateRoomDTO;
-import com.bricktool.videoroom.dto.UpdateRoomDTO;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

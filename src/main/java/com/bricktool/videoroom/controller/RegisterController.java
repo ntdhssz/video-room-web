@@ -18,7 +18,6 @@ public class RegisterController {
 
     @PostMapping
     public ResultData register(@RequestBody RegisterDTO registerDTO) {
-        System.out.println(JSON.toJSONString(registerDTO));
         registerService.register(registerDTO);
         return ResultUtil.success();
     }

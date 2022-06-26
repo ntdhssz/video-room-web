@@ -25,15 +25,15 @@ public class RoomController {
         return ResultUtil.success(roomService.getRoomInfo(id));
     }
 
-    @GetMapping("/{id}")
-    public ResultData getRoomInfo(@PathVariable int id) {
-        return ResultUtil.success(roomService.getRoomInfo(id));
-    }
-
     @PostMapping
     public ResultData createRoom(@RequestBody CreateRoomDTO createRoomDTO, HttpServletRequest request) {
         int userId = (int) request.getAttribute("uid");
         return ResultUtil.success(roomService.createRoom(userId, createRoomDTO));
+    }
+
+    @GetMapping("/{id}")
+    public ResultData getRoomInfo(@PathVariable int id) {
+        return ResultUtil.success(roomService.getRoomInfo(id));
     }
 
     @PutMapping("/{id}")
